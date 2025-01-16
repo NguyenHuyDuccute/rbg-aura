@@ -54,7 +54,7 @@ fingerprint.addEventListener('touchstart', function() {
 
     setTimeout(() => {
       fingerprint.style.left = 'calc(50% + 20px)';
-      fingerprint.style.top = 'calc(50% + 100px)';
+      fingerprint.style.top = 'calc(50% + 90px)';
       fingerprint.style.transform = 'translate(-50%, -50%)';
       fingerprint.style.opacity = '1';
       
