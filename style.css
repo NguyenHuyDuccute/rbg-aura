@@ -79,7 +79,7 @@ img {
   z-index: 100;
   position: absolute;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   opacity: 0;
   margin-top: 120px;
   border-radius: 50%;
@@ -95,15 +95,52 @@ img {
       -webkit-tap-highlight-color: transparent; /* Chrome / Android */
       outline: none; /* Ngăn viền mặc định */
 }
+#fingerprint.active { box-shadow: 0 0 15px 5px rgba(0, 255, 0, 0.5);}
 
 .fingerprint 
 { position: absolute; 
-  width: 120px; height: 120px; 
+  width: 100px; height: 100px; 
   background-image: url('finger.png'); 
   background-size: contain; 
   background-repeat: no-repeat; 
-  opacity: 0; transition: all 4s cubic-bezier(0, 0, 1, 1);
+  opacity: 0; transition: all 4s ease;
+  /* box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); */
 }
 
+.scan-bar {
+  display: none;
+  z-index: 101;
+  position: absolute;
+  margin-top: 70px;
+  width: 100%;
+  height: 5px;
+  background-color: rgb(255, 255, 255); /* Tăng độ sáng */
+  box-shadow: 0 0 10px #eff0f7, 0 0 20px rgb(0, 174, 255); /* Thêm hiệu ứng ánh sáng */
+  animation: scan 2s linear infinite;
+}
+.finger-active {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  transform: translate(-50%, -50%);
+  margin-top: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none; /* Chrome / Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE 10+ */
+  user-select: none;         /* Standard */
+  -webkit-user-drag: none;   /* Safari */
+}
 
-
+@keyframes scan {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%;
+  }
+}

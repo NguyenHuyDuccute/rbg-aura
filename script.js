@@ -1,10 +1,18 @@
 // script.js
 const fingerprint = document.getElementById("fingerprint");
 const fingerBg = document.querySelector(".finger-class");
+const scanLine = document.querySelector(".scan-bar");
+const fingerActive = document.querySelector(".finger-active");
 // Chặn hành vi mặc định khi chạm vào phần tử không mong muốn
 fingerBg.addEventListener("contextmenu", (event) => event.preventDefault());
 fingerBg.addEventListener("selectstart", (event) => event.preventDefault());
 fingerBg.addEventListener("touchstart", (event) => {
+  event.preventDefault(); // Ngăn hành vi mặc định
+});
+fingerActive.style.display = "none";
+fingerActive.addEventListener("contextmenu", (event) => event.preventDefault());
+fingerActive.addEventListener("selectstart", (event) => event.preventDefault());
+fingerActive.addEventListener("touchstart", (event) => {
   event.preventDefault(); // Ngăn hành vi mặc định
 });
 
@@ -13,8 +21,15 @@ let lastClickTime = 0;
 fingerprint.addEventListener('touchstart', function() {
   const currentTime = Date.now();
   if (currentTime - lastClickTime >= 5000) {
-    lastClickTime = currentTime;
-  for (let i = 0; i < 20; i++) {
+     lastClickTime = currentTime;
+     index = 0;
+    //  scanLine.style.display="block";
+     fingerActive.style.display = "block";
+     setTimeout(()=>{
+      fingerActive.style.display = "none";
+      // scanLine.style.display="none";
+     },1500);
+    for (i = 0; i<=40;i++){
     let fingerprint = document.createElement('div');
     fingerprint.classList.add('fingerprint');
     document.body.appendChild(fingerprint);
@@ -48,8 +63,8 @@ fingerprint.addEventListener('touchstart', function() {
         fingerprint.style.opacity = '0';
         setTimeout(() => {
           fingerprint.remove();
-        }, 2000); // Chờ cho hoạt ảnh biến mất hoàn toàn trước khi xóa phần tử
-      }, 3000); // Thời gian chờ trước khi biến mất
+        }, 3000); // Chờ cho hoạt ảnh biến mất hoàn toàn trước khi xóa phần tử
+      }, 2000); // Thời gian chờ trước khi biến mất
     },200); // Thời gian trễ ban đầu
   }
 }
